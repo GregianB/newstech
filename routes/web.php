@@ -14,13 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 
-Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');;
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
-
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'show']);
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
+// Admin
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'showAdmin']);
+
+// User
+Route::get('/beranda', [App\Http\Controllers\GuestController::class, 'show']);
+Route::get('/berita', [App\Http\Controllers\GuestController::class, 'berita']);
+Route::get('/berita/detail-berita', [App\Http\Controllers\GuestController::class, 'detail_berita']);
+Route::get('/detail-berita', [App\Http\Controllers\GuestController::class, 'detail_berita']);

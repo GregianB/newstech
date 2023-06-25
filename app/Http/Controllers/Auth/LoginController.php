@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    function login(Request $request) 
+    function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -24,16 +25,23 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $level = auth()->user()->level;
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            if ($level == 1) {
+                return redirect()->intended('/admin');
+            } else if ($level == 2) {
+                return redirect()->intended('/beranda');
+            } else {
+                
+            }
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');    
+        ])->onlyInput('email');
     }
-    
+
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
@@ -44,5 +52,4 @@ class LoginController extends Controller
 
         return redirect('/');
     }
-    
 }
