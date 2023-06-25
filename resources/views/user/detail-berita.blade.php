@@ -11,8 +11,8 @@
                             <li class="breadcrumb-item"><a href="beranda">Beranda</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detail Berita</li>
                         @else
-                            <li class="breadcrumb-item active" aria-current="page"><a href="/berita">Berita</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail Berita</li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="/berita ">Berita</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Detail Berita</li>
                         @endif
                     </ol>
                 </nav>
