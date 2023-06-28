@@ -20,28 +20,15 @@
                     <div class="card-body p-4">
                         <div class="news-custom">
                             <div class="news-title p-4">
-                                <h3>XIAOMI ROBOT VACUUM S12 | User Experience</h3>
-                                <div class="mt-4">2023-06-16 20:43:02</div>
+                                <h3>{{ $data->judul_berita }}</h3>
+                                <div class="mt-4">{{ $data->created_at }}</div>
                             </div>
                             <div class="m-3">
-                                <img src="https://cdn.alsgp0.fds.api.mi-img.com/middle.community.micommunityglobal.bkt/520066f7632a484bf3b7254a9b9335e3"
-                                    style="width: 100%" />
-
+                                <div class="text-center">
+                                    <img src="{{ asset('images/' . $data->image) }}" />
+                                </div>
                                 <p class="mt-4">
-                                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                    piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-                                    McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of
-                                    the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through
-                                    the cites of the word in classical literature, discovered the undoubtable source. Lorem
-                                    Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The
-                                    Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
-                                    theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
-                                    "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
-                                    interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero
-                                    are also reproduced in their exact original form, accompanied by English versions from
-                                    the 1914 translation by H. Rackham.
+                                    {{ $data->isi_berita }}
                                 </p>
                             </div>
                             <div class="m-3 mt-4">
