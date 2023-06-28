@@ -30,7 +30,7 @@ Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'dele
 // User
 Route::get('/beranda', [App\Http\Controllers\GuestController::class, 'show']);
 Route::get('/berita', [App\Http\Controllers\GuestController::class, 'berita']);
-Route::get('/berita/detail-berita', [App\Http\Controllers\GuestController::class, 'detail_berita']);
+Route::get('/berita/detail-berita/{id}', [App\Http\Controllers\GuestController::class, 'detail_berita']);
 Route::get('/detail-berita/{id}', [App\Http\Controllers\GuestController::class, 'detail_berita']);
 
 //Post
