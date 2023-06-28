@@ -29,10 +29,16 @@ return [
     */
 
     'disks' => [
-
+        'public_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images'),
+            'url' => env('APP_URL') . '/storage_images',
+            'visibility' => 'public',
+            'mime' => true,
+        ],
         'local' => [
             'driver' => 'local',
-            // 'root' => storage_path('app'),
+            'root' => storage_path('app'),
             'url' => env('APP_URL') . '/storage',
             'throw' => false,
             'mime' => true,

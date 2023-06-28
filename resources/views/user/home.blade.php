@@ -24,7 +24,7 @@
                                                 {{ $item->judul_berita }}
                                             </div>
                                             <div class="news-text-custom">
-                                                {{ \Illuminate\Support\Str::limit($item->isi_berita.'...', 1000) }}
+                                                {{ \Illuminate\Support\Str::limit($item->isi_berita.'...', 300) }}
                                             </div>
                                             <div class="news-date-custom">
                                                 {{ $item->created_at }}

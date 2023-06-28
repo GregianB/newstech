@@ -67,6 +67,7 @@
                                                                 <form action="/admin/edit/{{ $item->id }}"
                                                                     method="POST" enctype="multipart/form-data">
                                                                     @csrf
+                                                                    @method('PUT')
                                                                     <div class="modal-title-custom">
                                                                         <h3>Ubah</h3>
                                                                         <h6>Ubah konten berita</h6>
