@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Data;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -21,26 +23,38 @@ class AdminController extends Controller
 
     function postData(Request $request)
     {
-        // Validate the input data
         $validatedData = $request->validate([
             'judul_berita' => 'required|string|max:255',
-            'isi_berita' => 'required|string|max:255',
-            'image' => 'required|image|max:2048', // Max file size: 2MB (2048 kilobytes)
+            'isi_berita' => 'required|string',
+            'image' => 'required|image|max:2048',
         ]);
 
-        // Create a new instance of the model and assign the validated data
-        $imagePath = $request->file('image')->store('images', 'public');
+        $image = $request->file('image');
 
-        // Create a new instance of the model and assign the validated data
-        $data = new Data(); // Replace Data with your model name
-        $data->name = $validatedData['name'];
-        $data->email = $validatedData['email'];
-        $data->image = $imagePath;
+        if ($image) {
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('images'), $image->getClientOriginalName());
+        }
 
-        // Save the data to the database
+        $data = new Data();
+        $data->judul_berita = $validatedData['judul_berita'];
+        $data->isi_berita = $validatedData['isi_berita'];
+        $data->image = $filename;
         $data->save();
+        
+        return redirect('/admin')->with('Berhasil', 'Berhasil menambahkan berita');
+    }
 
-        // Optionally, you can also return a response or redirect to another page
-        return response()->json(['message' => 'Data stored successfully']);
+    function deleteData($id)
+    {
+        $item = Data::find($id);
+
+        if ($item) {
+            Storage::delete(public_path('images/'. $item->image));
+            $item->delete();
+            return redirect('/admin')->with('Berhasil', 'Berhasil menghapus berita');
+        }
+
+        return redirect('/admin')->with('Gagal', 'Gagal menghapus berita');   
     }
 }

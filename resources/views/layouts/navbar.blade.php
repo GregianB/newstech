@@ -19,7 +19,12 @@
                 @auth
                     @if (auth()->user()->level == 1)
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin">Data Berita</a>
+                            <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}"
+                                aria-current="page" href="/beranda">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->segment(1) === 'admin' ? 'active' : '' }}""
+                                aria-current="page" href="/admin">Data Berita</a>
                         </li>
                     @elseif (auth()->user()->level == 2)
                         <li class="nav-item">

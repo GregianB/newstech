@@ -25,6 +25,7 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, '
 // Admin
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'getData']);
 Route::post('/admin', [App\Http\Controllers\AdminController::class, 'postData']);
+Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'deleteData']);
 
 // User
 Route::get('/beranda', [App\Http\Controllers\GuestController::class, 'show']);
