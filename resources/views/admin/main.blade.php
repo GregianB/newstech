@@ -28,33 +28,77 @@
                         </div>
                         <hr class="line-custom" />
                         <div>
-                            <a href="/create"><button class="btn btn-primary mt-4 mb-2">Tambah</button></a>
+                            {{-- <a href="/create"><button class="btn btn-primary mt-4 mb-2">Tambah</button></a> --}}
+                            <button type="button" class="btn btn-primary mt-4 mb-2" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                                <i class="fa fa-plus fa-sm"></i> Tambah
+                            </button>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col" width="50" class="text-center">#</th>
                                         <th scope="col">Judul</th>
                                         <th scope="col">Isi</th>
-                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Gambar</th>
                                         <th scope="col" width="300">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row" class="text-center">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>
-                                            <button class="btn btn-secondary">detail</button>
-                                            <button class="btn btn-success">edit</button>
-                                            <button class="btn btn-danger">hapus</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($data as $index => $item)
+                                        <tr>
+                                            <th scope="row" class="text-center">{{ $index + 1 }}</th>
+                                            <td>{{ $item->judul_berita }}</td>
+                                            <td>{{ $item->isi_berita }}</td>
+                                            <td></td>
+                                            <td>
+                                                <button class="btn btn-success"><i class="fa fa-edit fa-sm"></i> Ubah</button>
+                                                <button class="btn btn-danger"><i class="fa fa-trash fa-sm"></i> Hapus</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-body">
+                    <form method="POST" action="/posts" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-title-custom">
+                            <h3>Tambah</h3>
+                            <h6>Tambah konten berita</h6>
+                        </div>
+                        <div class="mt-4">
+                            <div class="mb-3">
+                                <label for="title" class="form-label form-label-custom">Judul Berita</label>
+                                <input type="text" class="form-control form-control-custom" id="title"
+                                    name="title" placeholder="Masukkan Judul" autocomplete="off" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="thumbnail" class="form-label form-label-custom">Gambar Berita</label>
+                                <input type="file" class="form-control form-control-custom" id="thumbnail"
+                                    name="thumbnail">
+                            </div>
+                            <div class="mb-3">
+                                <label for="body" class="form-label form-label-custom">Isi Berita</label>
+                                <textarea type="body" class="form-control form-control-custom" id="body" name="body"
+                                    placeholder="Masukkan isi berita" rows="5" autocomplete="off"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                            <input type="submit" id="submit" class="btn btn-primary" value="Simpan" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

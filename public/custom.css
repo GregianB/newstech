@@ -30,7 +30,7 @@ img {
     color: #fff;
 }
 
-/* Login CSS */
+/* LOGIN */
 .login-custom {
     display: flex;
     flex: column;
@@ -64,6 +64,24 @@ img {
 .login-content-custom .content-subtitle {
     color: #878a8c;
     font-weight: 500;
+}
+
+
+/* CONTENT */
+.modal-content-custom {
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.modal-title-custom h3 {
+    color: #333333;
+    font-weight: 600;
+}
+
+.modal-title-custom h6 {
+    color: #878a8c;
+    font-weight: 600;
 }
 
 .header-custom {
@@ -131,6 +149,11 @@ img {
 
 .navbar-nav-custom .nav-item a.nav-link.active {
     border-bottom: 3px solid #FF6700;
+}
+
+.form-label-custom {
+    color: #333333;
+    font-weight: 600;
 }
 
 .form-control-custom {

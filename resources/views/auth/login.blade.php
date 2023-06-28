@@ -33,7 +33,7 @@
                     {{ session('Logout') }}
                 </div>
             @elseif (session('Failed'))
-                <div class="alert alert-success">
+                <div class="alert alert-danger">
                     {{ session('Failed') }}
                 </div>
             @else

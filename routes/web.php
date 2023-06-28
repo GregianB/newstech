@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.home');
-});
+Route::redirect('/', '/beranda');
 
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->middleware('guest');
@@ -25,7 +23,8 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 's
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
 // Admin
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'showAdmin']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'getData']);
+Route::post('/admin', [App\Http\Controllers\AdminController::class, 'postData']);
 
 // User
 Route::get('/beranda', [App\Http\Controllers\GuestController::class, 'show']);

@@ -40,6 +40,15 @@
                                 href="/berita">Berita</a>
                         </li>
                     @endif
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}" aria-current="page"
+                            href="/beranda">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}"
+                            href="/berita">Berita</a>
+                    </li>
                 @endauth
             </ul>
             <form class="d-flex" role="search">
