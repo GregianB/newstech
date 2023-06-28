@@ -54,8 +54,62 @@
                                                     height="100" />
                                             </td>
                                             <td>
-                                                <button class="btn btn-success"><i class="fa fa-edit fa-sm"></i>
+                                                <button class="btn btn-success" data-bs-toggle="modal"
+                                                    data-bs-target="#editModal{{ $item->id }}"><i
+                                                        class="fa fa-edit fa-sm"></i>
                                                     Ubah</button>
+                                                <div class="modal fade" id="editModal{{ $item->id }}"
+                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content modal-content-custom">
+                                                            <div class="modal-body">
+                                                                <form action="/admin/edit/{{ $item->id }}"
+                                                                    method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="modal-title-custom">
+                                                                        <h3>Ubah</h3>
+                                                                        <h6>Ubah konten berita</h6>
+                                                                    </div>
+                                                                    <div class="mt-4">
+                                                                        <div class="mb-3">
+                                                                            <label for="judul_berita"
+                                                                                class="form-label form-label-custom">Judul
+                                                                                Berita</label>
+                                                                            <input type="text"
+                                                                                class="form-control form-control-custom"
+                                                                                name="judul_berita" id="judul_berita"
+                                                                                placeholder="Masukkan Judul"
+                                                                                value="{{ $item->judul_berita }}"
+                                                                                autocomplete="off" />
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="image"
+                                                                                class="form-label form-label-custom">Gambar
+                                                                                Berita</label>
+                                                                            <input type="file"
+                                                                                class="form-control form-control-custom"
+                                                                                name="image" id="image">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="isi_berita"
+                                                                                class="form-label form-label-custom">Isi
+                                                                                Berita</label>
+                                                                            <textarea type="body" class="form-control form-control-custom" id="isi_berita" name="isi_berita"
+                                                                                placeholder="Masukkan isi berita" rows="5" autocomplete="off" required>{{ $item->isi_berita }}</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-4 text-center">
+                                                                        <button type="button" class="btn btn-danger"
+                                                                            data-bs-dismiss="modal">Tutup</button>
+                                                                        <input type="submit" id="submit"
+                                                                            class="btn btn-primary" value="Simpan" />
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#deleteModal{{ $item->id }}">
@@ -68,7 +122,7 @@
                                                         <div class="modal-content modal-content-custom">
                                                             <div class="modal-body">
                                                                 <form action="/admin/{{ $item->id }}"
-                                                                    method="POST">
+                                                                    method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <div class="modal-title-custom">
@@ -127,7 +181,6 @@
                                 <textarea type="body" class="form-control form-control-custom" id="isi_berita" name="isi_berita"
                                     placeholder="Masukkan isi berita" rows="5" autocomplete="off" required></textarea>
                             </div>
-
                         </div>
                         <div class="mt-4 text-center">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>

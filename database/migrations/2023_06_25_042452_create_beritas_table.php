@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul_berita');
             $table->string('isi_berita');
-            $table->string('penulis');
+            $table->string('image');
             $table->timestamps();
         });
     }

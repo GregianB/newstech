@@ -41,20 +41,50 @@ class AdminController extends Controller
         $data->isi_berita = $validatedData['isi_berita'];
         $data->image = $filename;
         $data->save();
-        
+
         return redirect('/admin')->with('Berhasil', 'Berhasil menambahkan berita');
+    }
+
+    function editData(Request $request, $id)
+    {
+        $item = Data::find($id);
+
+        if ($item) {
+            // Handle image upload
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('images');
+                $item->image = $imagePath;
+            } else {
+                $image = $request->file('image');
+                if ($image) {
+                    $filename = $image->getClientOriginalName();
+                    $image->move(public_path('images'), $image->getClientOriginalName());
+                    $item->image = $filename;
+                }
+            }
+
+            // Handle other form field updates
+            $item->judul_berita = $request->input('judul_berita');
+            $item->isi_berita = $request->input('isi_berita');
+
+            $item->save();
+
+            return redirect('/admin')->with('Berhasil', 'Berhasil mengubah berita');
+        }
     }
 
     function deleteData($id)
     {
         $item = Data::find($id);
+        $path = 'images/' . $item->image;
 
         if ($item) {
-            Storage::delete(public_path('images/'. $item->image));
+            // Storage::disk('public')->delete($path);
+            Storage::delete($path);
             $item->delete();
             return redirect('/admin')->with('Berhasil', 'Berhasil menghapus berita');
         }
 
-        return redirect('/admin')->with('Gagal', 'Gagal menghapus berita');   
+        return redirect('/admin')->with('Gagal', 'Gagal menghapus berita');
     }
 }
