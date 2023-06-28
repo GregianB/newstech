@@ -31,11 +31,23 @@
                                     {{ $data->isi_berita }}
                                 </p>
                             </div>
-                            <div class="m-3 mt-4">
-                                <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
-                                <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                <button class="btn btn-primary mt-2 float-end">Kirim</button>
-                            </div>
+                            @auth
+                                <form>
+                                    <div class="m-3 mt-4">
+                                        <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
+                                        <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <input type="submit" class="btn btn-primary mt-2 float-end" value="Kirim">
+                                    </div>
+                                </form>
+                            @else
+                                <form>
+                                    <div class="m-3 mt-4">
+                                        <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
+                                        <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <input type="submit" class="btn btn-primary mt-2 float-end" value="Kirim">
+                                    </div>
+                                </form>
+                            @endauth
                         </div>
                     </div>
                 </div>

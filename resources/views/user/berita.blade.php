@@ -11,7 +11,7 @@
                         <hr class="line-custom" />
                         <div class="news-custom mt-4">
                             @foreach ($data as $index => $item)
-                                <a href="/berita/detail-berita">
+                                <a href="/berita/detail-berita/{{ $item->id }}">
                                     <div class="news-link-custom d-flex align-items-center">
                                         <div class="news-img-custom">
                                             <img src={{ asset('images/' . $item->image) }} width="300" height="200" />
