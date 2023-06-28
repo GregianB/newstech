@@ -28,7 +28,7 @@ class GuestController extends Controller
     function detail_berita($id)
     {
         $data = Data::find($id);
-        $komen = Comment::latest()->paginate(10);
+        $komen = Comment::latest()->paginate(10);   
 
         return view('user.detail-berita', ['data' => $data], ['komen' => $komen]);
     }
