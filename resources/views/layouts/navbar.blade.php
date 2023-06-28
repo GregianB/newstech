@@ -23,8 +23,8 @@
                                 aria-current="page" href="/beranda">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->segment(1) === 'admin' ? 'active' : '' }}""
-                                aria-current="page" href="/admin">Data Berita</a>
+                            <a class="nav-link {{ request()->segment(1) === 'admin' ? 'active' : '' }}" aria-current="page"
+                                href="/admin">Data Berita</a>
                         </li>
                     @elseif (auth()->user()->level == 2)
                         <li class="nav-item">
@@ -32,7 +32,7 @@
                                 aria-current="page" href="/beranda">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}" aria-current="page"
                                 href="/berita">Berita</a>
                         </li>
                     @else

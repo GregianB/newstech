@@ -34,6 +34,6 @@ Route::get('/berita', [App\Http\Controllers\GuestController::class, 'berita']);
 Route::get('/berita/detail-berita/{id}', [App\Http\Controllers\GuestController::class, 'detail_berita']);
 Route::get('/detail-berita/{id}', [App\Http\Controllers\GuestController::class, 'detail_berita']);
 
-//Post
-Route::get('/create', [App\Http\Controllers\posts\PostController::class, 'create']);
-Route::post('/posts', [App\Http\Controllers\posts\PostController::class, 'store']);
+//Komentar
+Route::post('/komentar/{id}', [App\Http\Controllers\komentar\CommentController::class, 'komen']);
+Route::get('/nokomentar', [App\Http\Controllers\komentar\CommentController::class, 'nokomen']);

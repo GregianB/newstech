@@ -32,21 +32,23 @@
                                 </p>
                             </div>
                             @auth
-                                <form>
+                                <form method="post" action="/komentar/{{ auth()->user()->id }}">
+                                    @csrf
                                     <div class="m-3 mt-4">
                                         <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
-                                        <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3" name="komentar"
+                                            id="komentar" required></textarea>
                                         <input type="submit" class="btn btn-primary mt-2 float-end" value="Kirim">
                                     </div>
                                 </form>
                             @else
-                                <form>
-                                    <div class="m-3 mt-4">
-                                        <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
-                                        <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        <input type="submit" class="btn btn-primary mt-2 float-end" value="Kirim">
-                                    </div>
-                                </form>
+                                <div class="m-3 mt-4">
+                                    <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
+                                    <textarea class="form-control form-control-custom" id="exampleFormControlTextarea1" rows="3" name="komentar"
+                                        id="komentar" required></textarea>
+                                    <a href="/nokomentar"><input type="submit" class="btn btn-primary mt-2 float-end"
+                                            value="Kirim"></a>
+                                </div>
                             @endauth
                         </div>
                     </div>
@@ -57,46 +59,22 @@
                 <div class="card card-custom">
                     <div class="card-body p-3">
                         <div class="p-4">
+                            @foreach ($komen as $index => $item)
                             <div class="d-flex align-items-center">
                                 <div class="avatar-custom">
 
                                 </div>
                                 <div>
-                                    <div class="commentar-user-custom">Gregian</div>
-                                    <div class="commentar-date-custom">2023-06-16 20:43:02</div>
+                                    <div class="commentar-user-custom">{{ $item->id_user }}</div>
+                                    <div class="commentar-date-custom">{{ $item->created_at }}</div>
                                 </div>
                             </div>
-                            <div class="commentar-content-custom mt-4">Sangat bermanfaat gan!</div>
+                            <div class="commentar-content-custom mt-4">{{ $item->komentar }}</div>
 
                             <div class="mt-4 mb-4">
                                 <hr />
                             </div>
-
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-custom">
-
-                                </div>
-                                <div>
-                                    <div class="commentar-user-custom">Budi</div>
-                                    <div class="commentar-date-custom">2023-06-16 20:43:02</div>
-                                </div>
-                            </div>
-                            <div class="commentar-content-custom mt-4">Mantap gan!</div>
-
-                            <div class="mt-4 mb-4">
-                                <hr />
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-custom">
-
-                                </div>
-                                <div>
-                                    <div class="commentar-user-custom">Anton</div>
-                                    <div class="commentar-date-custom">2023-06-16 20:43:02</div>
-                                </div>
-                            </div>
-                            <div class="commentar-content-custom mt-4">Baik, dapat dimengerti!</div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

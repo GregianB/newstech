@@ -36,6 +36,10 @@
                 <div class="alert alert-danger">
                     {{ session('Failed') }}
                 </div>
+            @elseif (session('Comment'))
+                <div class="alert alert-danger">
+                    {{ session('Comment') }}
+                </div>
             @else
             @endif
             <div class="card-body">

@@ -48,7 +48,8 @@
                                         <tr>
                                             <th scope="row" class="text-center">{{ $index + 1 }}</th>
                                             <td>{{ $item->judul_berita }}</td>
-                                            <td>{{ $item->isi_berita }}</td>
+                                            <td> {{ \Illuminate\Support\Str::limit($item->isi_berita . '...', 50) }}
+                                            </td>
                                             <td>
                                                 <img src={{ asset('images/' . $item->image) }} width="150"
                                                     height="100" />
