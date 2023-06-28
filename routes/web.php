@@ -25,6 +25,7 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, '
 // Admin
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'getData']);
 Route::post('/admin', [App\Http\Controllers\AdminController::class, 'postData']);
+Route::post('/admin/edit/{id}', [App\Http\Controllers\AdminController::class, 'editData']);
 Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'deleteData']);
 
 // User

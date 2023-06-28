@@ -8,7 +8,7 @@
                     aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         @if (request()->segment(1) === 'detail-berita')
-                            <li class="breadcrumb-item"><a href="beranda">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="/beranda">Beranda</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detail Berita</li>
                         @else
                             <li class="breadcrumb-item active" aria-current="page"><a href="/berita ">Berita</a></li>
