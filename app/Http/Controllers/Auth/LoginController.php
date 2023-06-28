@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class LoginController extends Controller
@@ -33,13 +34,12 @@ class LoginController extends Controller
             } else if ($level == 2) {
                 return redirect()->intended('/beranda');
             } else {
-                
+                return redirect()->intended('/beranda');
             }
         }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        else {
+            return redirect('/login')->with('Failed', 'Gagal Login! Email atau Password salah!');
+        }
     }
 
     public function logout(Request $request): RedirectResponse
@@ -50,6 +50,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login')->with('Logout', 'Anda telah logout!');
     }
 }

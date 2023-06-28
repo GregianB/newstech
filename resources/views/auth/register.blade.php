@@ -20,6 +20,20 @@
         @csrf
         <div class="login-custom">
             <div class="card login-card-custom">
+                @if (session('Success'))
+                    <div class="alert alert-success">
+                        {{ session('Success') }}
+                    </div>
+                @elseif (session('Failed'))
+                    <div class="alert alert-danger">
+                        {{ session('Failed') }}
+                    </div>
+                @elseif (session('Error'))
+                    <div class="alert alert-danger">
+                        {{ session('Error') }}
+                    </div>
+                @else
+                @endif
                 <div class="card-body">
                     <div class="login-content-custom">
                         <div class="content-logo text-center">
@@ -29,7 +43,7 @@
                             Daftar
                         </div>
                         <div class="content-subtitle text-center mb-4">
-                            Please enter your details.
+                            Masukan nama, email dan password untuk mendaftar.
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control form-control-custom" id="name"
@@ -40,8 +54,8 @@
                                 placeholder="Masukkan email" name="email">
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control form-control-custom"
-                                id="password" placeholder="Masukkan password" name="password">
+                            <input type="password" class="form-control form-control-custom" id="password"
+                                placeholder="Masukkan password" name="password">
                         </div>
                         <div class="mt-4">
                             <input type="submit" class="btn btn-outline-primary-custom btn-lg" style="width: 100%"

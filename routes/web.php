@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('user.home');
 });
 
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
@@ -32,3 +32,7 @@ Route::get('/beranda', [App\Http\Controllers\GuestController::class, 'show']);
 Route::get('/berita', [App\Http\Controllers\GuestController::class, 'berita']);
 Route::get('/berita/detail-berita', [App\Http\Controllers\GuestController::class, 'detail_berita']);
 Route::get('/detail-berita', [App\Http\Controllers\GuestController::class, 'detail_berita']);
+
+//Post
+Route::get('/create', [App\Http\Controllers\posts\PostController::class, 'create']);
+Route::post('/posts', [App\Http\Controllers\posts\PostController::class, 'store']);

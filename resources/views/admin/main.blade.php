@@ -28,7 +28,7 @@
                         </div>
                         <hr class="line-custom" />
                         <div>
-                            <button class="btn btn-primary mt-4 mb-2">Tambah</button>
+                            <a href="/create"><button class="btn btn-primary mt-4 mb-2">Tambah</button></a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>

@@ -28,6 +28,15 @@
                 <div class="alert alert-success">
                     {{ session('Success') }}
                 </div>
+            @elseif (session('Logout'))
+                <div class="alert alert-success">
+                    {{ session('Logout') }}
+                </div>
+            @elseif (session('Failed'))
+                <div class="alert alert-success">
+                    {{ session('Failed') }}
+                </div>
+            @else
             @endif
             <div class="card-body">
                 <div class="login-content-custom">
@@ -38,7 +47,7 @@
                         Masuk
                     </div>
                     <div class="content-subtitle text-center mb-4">
-                        Please enter your details.
+                        Masukan email dan password untuk login.
                     </div>
 
                     <form method="POST" action="/login">
