@@ -6,7 +6,7 @@
                 <div class="card card-custom">
                     <div class="card-body p-4">
                         <div class="title-custom">
-                            Berita 
+                            Berita
                         </div>
                         <hr class="line-custom" />
                         <div class="news-custom mt-4">

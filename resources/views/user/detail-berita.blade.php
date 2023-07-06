@@ -21,18 +21,19 @@
                         <div class="news-custom">
                             <div class="news-title p-4">
                                 <h3>{{ $data->judul_berita }}</h3>
-                                <div class="mt-4">{{ $data->created_at }}</div>
+                                <div class="mt-4">{{ $data->created_at }}&nbsp;&nbsp;{{ $data->kategori }}&nbsp;&nbsp;{{ $data->penulis }}</div>
                             </div>
                             <div class="m-3">
                                 <div class="text-center">
-                                    <img src="{{ asset('images/' . $data->image) }}" />
+                                    <img src="{{ asset('images/' . $data->image) }}" width="600" height="400" />
                                 </div>
                                 <p class="mt-4">
                                     {{ $data->isi_berita }}
                                 </p>
                             </div>
                             @auth
-                                <form method="post" action="/komentar/{{ auth()->user()->id }}">
+                                <form method="post"
+                                    action="/komentar/{{ auth()->user()->id }}/{{ auth()->user()->name }}/{{ auth()->user()->image }}/{{ $data->id }}">
                                     @csrf
                                     <div class="m-3 mt-4">
                                         <label for="exampleFormControlTextarea1" class="form-label-custom">Komentar</label>
@@ -60,20 +61,29 @@
                     <div class="card-body p-3">
                         <div class="p-4">
                             @foreach ($komen as $index => $item)
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-custom">
+                                @if ($item == null)
+                                    <div class="commentar-content-custom mt-4">
+                                        <h5>Belum ada komentar.</h5>
+                                    </div>
+                                @elseif ($item)
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-custom">
+                                            <img src="{{ asset('usersfoto/' . $item->image_user) }}"
+                                                class="avatar-img-custom" />
+                                        </div>
+                                        <div>
+                                            <div class="commentar-user-custom">{{ $item->nama_user }}</div>
+                                            <div class="commentar-date-custom">{{ $item->created_at }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="commentar-content-custom mt-4">{{ $item->komentar }}</div>
 
-                                </div>
-                                <div>
-                                    <div class="commentar-user-custom">{{ $item->id_user }}</div>
-                                    <div class="commentar-date-custom">{{ $item->created_at }}</div>
-                                </div>
-                            </div>
-                            <div class="commentar-content-custom mt-4">{{ $item->komentar }}</div>
-
-                            <div class="mt-4 mb-4">
-                                <hr />
-                            </div>
+                                    <div class="mt-4 mb-4">
+                                        <hr />
+                                    </div>
+                                @else
+                                    Error.
+                                @endif
                             @endforeach
                         </div>
                     </div>

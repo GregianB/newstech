@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>News Tech</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="/custom.css" rel="stylesheet" crossorigin="anonymous" />
@@ -13,6 +13,7 @@
     <style>
         @import url('https://fonts.cdnfonts.com/css/montserrat');
     </style>
+    <link rel="icon" href="{{ asset('logo_web.jpeg') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-12 mt-4">
+            <div class="col-12 mt-2">
                 <div class="card card-custom">
                     <div class="card-body p-4">
                         <div class="title-custom">
@@ -33,6 +34,14 @@
                                 data-bs-target="#staticBackdrop">
                                 <i class="fa fa-plus fa-sm"></i> Tambah
                             </button>
+                            <div class="float-end">
+                                <form class="d-flex" role="search" method="post" action="/cariAdmin">
+                                    @csrf
+                                    <input type="text" class="form-control form-control-custom" placeholder="Cari..."
+                                        aria-label="Cari" aria-describedby="addon-wrapping" name="cari"
+                                        id="cari">
+                                </form>
+                            </div>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -40,6 +49,8 @@
                                         <th scope="col">Judul</th>
                                         <th scope="col">Isi</th>
                                         <th scope="col">Gambar</th>
+                                        <th scope="col">Kategori</th>
+                                        <th scope="col">Penulis</th>
                                         <th scope="col" width="300">Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,12 +59,14 @@
                                         <tr>
                                             <th scope="row" class="text-center">{{ $index + 1 }}</th>
                                             <td>{{ $item->judul_berita }}</td>
-                                            <td> {{ \Illuminate\Support\Str::limit($item->isi_berita . '...', 50) }}
+                                            <td> {{ \Illuminate\Support\Str::limit($item->isi_berita . '...', 100) }}
                                             </td>
                                             <td>
                                                 <img src={{ asset('images/' . $item->image) }} width="150"
                                                     height="100" />
                                             </td>
+                                            <td>{{ $item->kategori }}</td>
+                                            <td>{{ $item->penulis }}</td>
                                             <td>
                                                 <button class="btn btn-success" data-bs-toggle="modal"
                                                     data-bs-target="#editModal{{ $item->id }}"><i
@@ -65,7 +78,8 @@
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content modal-content-custom">
                                                             <div class="modal-body">
-                                                                <form action="/admin/edit/{{ $item->id }}"
+                                                                <form
+                                                                    action="/admin/edit/{{ $item->id }}/{{ auth()->user()->name }}"
                                                                     method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     @method('PUT')
@@ -84,6 +98,27 @@
                                                                                 placeholder="Masukkan Judul"
                                                                                 value="{{ $item->judul_berita }}"
                                                                                 autocomplete="off" />
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="kategori_berita"
+                                                                                class="form-label form-label-custom">Kategori
+                                                                                Berita</label>
+                                                                            <select name="kategori" id="kategori"
+                                                                                required>
+                                                                                <option>--Pilih Kategori--</option>
+                                                                                <option value="Ekonomi">Ekonomi</option>
+                                                                                <option value="Teknologi">Teknologi
+                                                                                </option>
+                                                                                <option value="Olahraga">Olahraga
+                                                                                </option>
+                                                                                <option value="Bisnis">Bisnis</option>
+                                                                                <option value="Kesehatan">Kesehatan
+                                                                                </option>
+                                                                                <option value="Hiburan">Hiburan</option>
+                                                                                <option value="Sosial">Sosial</option>
+                                                                                <option value="Pendidikan">Pendidikan
+                                                                                </option>
+                                                                            </select>
                                                                         </div>
                                                                         <div class="mb-3">
                                                                             <label for="image"
@@ -161,7 +196,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-content-custom">
                 <div class="modal-body">
-                    <form method="POST" action="/admin" enctype="multipart/form-data">
+                    <form method="POST" action="/admin/{{ auth()->user()->name }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-title-custom">
                             <h3>Tambah</h3>
@@ -172,6 +207,21 @@
                                 <label for="judul_berita" class="form-label form-label-custom">Judul Berita</label>
                                 <input type="text" class="form-control form-control-custom" name="judul_berita"
                                     id="judul_berita" placeholder="Masukkan Judul" autocomplete="off" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="kategori_berita" class="form-label form-label-custom">Kategori
+                                    Berita</label>
+                                <select name="kategori" id="kategori" required>
+                                    <option>--Pilih Kategori--</option>
+                                    <option value="Ekonomi">Ekonomi</option>
+                                    <option value="Teknologi">Teknologi</option>
+                                    <option value="Olahraga">Olahraga</option>
+                                    <option value="Bisnis">Bisnis</option>
+                                    <option value="Kesehatan">Kesehatan</option>
+                                    <option value="Hiburan">Hiburan</option>
+                                    <option value="Sosial">Sosial</option>
+                                    <option value="Pendidikan">Pendidikan</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label form-label-custom">Gambar Berita</label>

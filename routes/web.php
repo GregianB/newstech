@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/beranda');
+Route::redirect('/', '/beranda' );
 
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->middleware('guest');
@@ -23,9 +23,9 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 's
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
 // Admin
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'getData']);
-Route::post('/admin', [App\Http\Controllers\AdminController::class, 'postData']);
-Route::put('/admin/edit/{id}', [App\Http\Controllers\AdminController::class, 'editData']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'getData'])->middleware('auth');
+Route::post('/admin/{nama}', [App\Http\Controllers\AdminController::class, 'postData']);
+Route::put('/admin/edit/{id}/{nama}', [App\Http\Controllers\AdminController::class, 'editData']);
 Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'deleteData']);
 
 // User
@@ -35,5 +35,18 @@ Route::get('/berita/detail-berita/{id}', [App\Http\Controllers\GuestController::
 Route::get('/detail-berita/{id}', [App\Http\Controllers\GuestController::class, 'detail_berita']);
 
 //Komentar
-Route::post('/komentar/{id}', [App\Http\Controllers\komentar\CommentController::class, 'komen']);
+Route::post('/komentar/{id}/{name}/{image}/{id_berita}', [App\Http\Controllers\komentar\CommentController::class, 'komen']);
 Route::get('/nokomentar', [App\Http\Controllers\komentar\CommentController::class, 'nokomen']);
+
+//Cari
+Route::post('/cari', [App\Http\Controllers\search\CariController::class, 'cari']);
+Route::post('/cariAdmin', [App\Http\Controllers\search\CariController::class, 'cariAdmin']);
+
+//profile
+Route::get('/profile/{id}', [App\Http\Controllers\profile\ProfileController::class, 'showProfile']);
+Route::post('/updateProfile/{id}', [App\Http\Controllers\profile\ProfileController::class, 'update']);
+Route::get('/gantipwd/{id}', [App\Http\Controllers\profile\ProfileController::class, 'showPassword']);
+Route::post('/updateProfilePassword/{id}', [App\Http\Controllers\profile\ProfileController::class, 'updatePassword']);
+
+//kategori
+Route::get('/kategori/{kategori}', [App\Http\Controllers\GuestController::class, 'showByKategori']);

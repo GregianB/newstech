@@ -12,21 +12,21 @@ img {
 }
 
 .text-primary {
-    color: #FF6700 !important;
+    color: #2F93C9; !important;
 }
 
 .btn-outline-primary-custom {
-    border: 1px solid #FF6700;
-    color: #FF6700;
+    border: 1px solid #2F93C9;
+    color: #2F93C9;
 }
 
 .btn-outline-primary-custom:hover {
-    background-color: #FF6700;
+    background-color: #2F93C9;
     color: #fff;
 }
 
 .btn-outline-primary-custom:focus:active {
-    background-color: #FF6700;
+    background-color: #2F93C9;
     color: #fff;
 }
 
@@ -52,7 +52,7 @@ img {
     font-size: 24px;
     font-weight: bold;
     letter-spacing: 0.5px;
-    color: #FF6700;
+    color: #2F93C9;
     margin-bottom: 50px;
 }
 
@@ -85,7 +85,7 @@ img {
 }
 
 .header-custom {
-    background-color: #FF6700;
+    background-color: #2F93C9;
     padding: 5px;
     text-align: right;
 }
@@ -126,6 +126,12 @@ img {
     border-radius: 50%;
 }
 
+.avatar-img-custom-profile {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+}
+
 .avatar-user-custom {
     font-weight: 600;
 }
@@ -148,7 +154,7 @@ img {
 }
 
 .navbar-nav-custom .nav-item a.nav-link.active {
-    border-bottom: 3px solid #FF6700;
+    border-bottom: 3px solid #2F93C9;
 }
 
 .form-label-custom {
@@ -181,7 +187,7 @@ img {
 }
 
 .line-custom {
-    border: 2px solid #FF6700;
+    border: 2px solid #2F93C9;
     opacity: 100;
     border-radius: 20px;
     width: 80px;
@@ -218,7 +224,7 @@ img {
     letter-spacing: 0.5px;
     font-size: 20px;
     font-weight: bold;
-    color: #FF6700;
+    color: #2F93C9;
     margin-bottom: 10px
 }
 
@@ -259,5 +265,5 @@ img {
     margin-top: 20px;
     padding: 20px;
     background-color: #191919;
-    color: #fff
+    color: #fff;
 }

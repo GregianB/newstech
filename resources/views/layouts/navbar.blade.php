@@ -9,7 +9,9 @@
 
 <nav class="navbar navbar-expand-sm navbar-custom">
     <div class="container-sm">
-        <a class="navbar-brand" style="font-weight:bold; " href="#">News Tech</a>
+        <a class="navbar-brand" style="font-weight:bold; " href="#"><img
+                src="{{ asset('logo_web-removebg-preview.png') }}" alt="Logo" width="75" height="75"
+                style="margin-inline:4px;">News Tech</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,64 +25,159 @@
                                 aria-current="page" href="/beranda">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->segment(1) === 'admin' ? 'active' : '' }}" aria-current="page"
-                                href="/admin">Data Berita</a>
-                        </li>
-                    @elseif (auth()->user()->level == 2)
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}"
-                                aria-current="page" href="/beranda">Beranda</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}" aria-current="page"
                                 href="/berita">Berita</a>
                         </li>
-                    @else
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}"
-                                aria-current="page" href="/beranda">Beranda</a>
+                            <a class="nav-link {{ request()->segment(1) === 'admin' ? 'active' : '' }}" aria-current="page"
+                                href="/admin">Data Berita</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}"
-                                href="/berita">Berita</a>
+                            <div class="dropdown">
+                                <div class="d-flex justify-content-center align-items-center dropdown-toggle" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="nav-item nav-link">
+                                        KATEGORI
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Ekonomi">&nbsp;Ekonomi</a></li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Teknologi">&nbsp;Teknologi</a>
+                                    </li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Olahraga">&nbsp;Olahraga</a></li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Bisnis">&nbsp;Bisnis</a></li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Kesehatan">&nbsp;Kesehatan</a>
+                                    </li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Hiburan">&nbsp;Hiburan</a></li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Sosial">&nbsp;Sosial</a></li>
+                                    <li><a class="dropdown-item nav-link" href="/kategori/Pendidikan">&nbsp;Pendidikan</a></li>
                         </li>
-                    @endif
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}" aria-current="page"
-                            href="/beranda">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}"
-                            href="/berita">Berita</a>
-                    </li>
-                @endauth
-            </ul>
-            <form class="d-flex" role="search">
-                <input type="text" class="form-control form-control-custom" placeholder="Cari" aria-label="Cari"
-                    aria-describedby="addon-wrapping">
-            </form>
-            @auth
-                <div class="m-2"></div>
+                </ul>
+            </div>
+            </li>
+        @elseif (auth()->user()->level == 2)
+            <li class="nav-item">
+                <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}" aria-current="page"
+                    href="/beranda">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}" aria-current="page"
+                    href="/berita">Berita</a>
+            </li>
+            <li class="nav-item">
                 <div class="dropdown">
                     <div class="d-flex justify-content-center align-items-center dropdown-toggle" href="#"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="avatar-custom">
-
-                        </div>
-                        <div class="avatar-user-custom">
-                            &nbsp; {{ auth()->user()->name }}
+                        <div class="nav-item nav-link">
+                            KATEGORI
                         </div>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i
-                                    class="fa-solid fa-user fa-fw mr-4"></i>&nbsp;Profile</a></li>
-                        <li><a class="dropdown-item logout" href="/logout"><i
-                                    class="fa-solid fa-right-from-bracket fa-fw"></i>&nbsp;Logout</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Ekonomi">&nbsp;Ekonomi</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Teknologi">&nbsp;Teknologi</a>
+                        </li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Olahraga">&nbsp;Olahraga</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Bisnis">&nbsp;Bisnis</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Kesehatan">&nbsp;Kesehatan</a>
+                        </li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Hiburan">&nbsp;Hiburan</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Sosial">&nbsp;Sosial</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Pendidikan">&nbsp;Pendidikan</a></li>
                     </ul>
                 </div>
-            @endauth
-            {{-- <div class="d-flex justify-content-center align-items-center">
+            </li>
+        @else
+            <li class="nav-item">
+                <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}" aria-current="page"
+                    href="/beranda">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}" href="/berita">Berita</a>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <div class="d-flex justify-content-center align-items-center dropdown-toggle" href="#"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="nav-item nav-link">
+                            KATEGORI
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item nav-link" href="/kategori/Ekonomi">&nbsp;Ekonomi</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Teknologi">&nbsp;Teknologi</a>
+                        </li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Olahraga">&nbsp;Olahraga</a>
+                        </li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Bisnis">&nbsp;Bisnis</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Kesehatan">&nbsp;Kesehatan</a>
+                        </li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Hiburan">&nbsp;Hiburan</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Sosial">&nbsp;Sosial</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Pendidikan">&nbsp;Pendidikan</a></li>
+                    </ul>
+                </div>
+            </li>
+            @endif
+        @else
+            <li class="nav-item">
+                <a class="nav-link {{ request()->segment(1) === 'beranda' ? 'active' : '' }}" aria-current="page"
+                    href="/beranda">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->segment(1) === 'berita' ? 'active' : '' }}" href="/berita">Berita</a>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <div class="d-flex justify-content-center align-items-center dropdown-toggle" href="#"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="nav-item nav-link">
+                            KATEGORI
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item nav-link" href="/kategori/Ekonomi">&nbsp;Ekonomi</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Teknologi">&nbsp;Teknologi</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Olahraga">&nbsp;Olahraga</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Bisnis">&nbsp;Bisnis</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Kesehatan">&nbsp;Kesehatan</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Hiburan">&nbsp;Hiburan</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Sosial">&nbsp;Sosial</a></li>
+                        <li><a class="dropdown-item nav-link" href="/kategori/Pendidikan">&nbsp;Pendidikan</a></li>
+                    </ul>
+                </div>
+            </li>
+        @endauth
+        </ul>
+        <form class="d-flex" role="search" method="post" action="/cari">
+            @csrf
+            <input type="text" class="form-control form-control-custom" placeholder="Cari..." aria-label="Cari"
+                aria-describedby="addon-wrapping" name="cari" id="cari">
+        </form>
+        @auth
+            <div class="m-2"></div>
+            <div class="dropdown">
+                <div class="d-flex justify-content-center align-items-center dropdown-toggle" href="#"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="avatar-custom">
+                        @if (auth()->user()->image == 'ppkosong.png')
+                            <img src="{{ asset('usersfoto/ppkosong.png') }}" class="avatar-img-custom" />
+                        @else
+                            <img src="{{ asset('usersfoto/' . auth()->user()->image) }}" class="avatar-img-custom" />
+                        @endif
+                    </div>
+                    <div class="avatar-user-custom">
+                        &nbsp; {{ auth()->user()->name }}
+                    </div>
+                </div>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/profile/{{ auth()->user()->id }}"><i
+                                class="fa-solid fa-user fa-fw mr-4"></i>&nbsp;Profile</a></li>
+                    <li><a class="dropdown-item logout" href="/logout"><i
+                                class="fa-solid fa-right-from-bracket fa-fw"></i>&nbsp;Logout</a></li>
+                </ul>
+            </div>
+        @endauth
+        {{-- <div class="d-flex justify-content-center align-items-center">
                 <div class="avatar-custom">
 
                 </div>
@@ -88,6 +185,6 @@
                     {{ auth()->user()->name }}
                 </div>
             </div> --}}
-        </div>
+    </div>
     </div>
 </nav>

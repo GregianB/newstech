@@ -16,15 +16,16 @@ class AdminController extends Controller
 
     function getData()
     {
-        $data = Data::all();
+        $data = Data::latest()->get();
 
         return view('admin.main', ['data' => $data]);
     }
 
-    function postData(Request $request)
+    function postData(Request $request, $nama)
     {
         $validatedData = $request->validate([
             'judul_berita' => 'required|string|max:255',
+            'kategori' => 'required|string',
             'isi_berita' => 'required|string',
             'image' => 'required|image|max:2048',
         ]);
@@ -40,12 +41,14 @@ class AdminController extends Controller
         $data->judul_berita = $validatedData['judul_berita'];
         $data->isi_berita = $validatedData['isi_berita'];
         $data->image = $filename;
+        $data->kategori = $validatedData['kategori'];
+        $data->penulis = $nama;
         $data->save();
 
         return redirect('/admin')->with('Berhasil', 'Berhasil menambahkan berita');
     }
 
-    function editData(Request $request, $id)
+    function editData(Request $request, $id, $nama)
     {
         $data = Data::findOrFail($id);
 
@@ -62,10 +65,12 @@ class AdminController extends Controller
             $filename = $newImage->getClientOriginalName();
             $image->move(public_path('images'), $image->getClientOriginalName());
             $data->image = $filename;
-            $data->judul_berita = $request->input('judul_berita');
-            $data->isi_berita = $request->input('isi_berita');
         }
-
+        
+        $data->judul_berita = $request->input('judul_berita');
+        $data->isi_berita = $request->input('isi_berita');
+        $data->kategori = $request->input('kategori');
+        $data->penulis = $nama;
         $data->save();
 
         return redirect('/admin')->with('Berhasil', 'Berhasil mengubah berita');

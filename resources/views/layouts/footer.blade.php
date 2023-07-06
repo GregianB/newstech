@@ -1,3 +1,3 @@
 <div class="footer-custom">
-    &copy;2023 Gregian Bayu Anugrah. All rights reserved
+    &copy;2023 Gregian, Raisya, Tiara, Ari. All rights reserved
 </div>

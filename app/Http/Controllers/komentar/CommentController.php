@@ -14,7 +14,7 @@ class CommentController extends Controller
         return redirect('/login')->with('Comment', 'Silahkan login terlebih dahulu untuk bisa berkomentar.');
     }
 
-    public function komen(Request $request, $id) 
+    public function komen(Request $request, $id, $name, $image, $id_berita) 
     {
         $validatedData = $request->validate([
             'komentar' => 'required|string',
@@ -22,7 +22,10 @@ class CommentController extends Controller
         
         $data = new Comment();
         $data->komentar = $validatedData['komentar'];
+        $data->id_berita = $id_berita;
         $data->id_user = $id;
+        $data->nama_user = $name;
+        $data->image_user = $image;
         $data->save();
 
         return redirect()->back();

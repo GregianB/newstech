@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 class GuestController extends Controller
@@ -20,16 +21,33 @@ class GuestController extends Controller
 
     function berita()
     {
-        $data = Data::all();
+        $data = Data::latest()->get();
+        //$data = Data::all();
 
         return view('user.berita', ['data' => $data]);
     }
 
     function detail_berita($id)
     {
-        $data = Data::find($id);
-        $komen = Comment::latest()->paginate(10);   
+        $data = Data::find($id);   
+
+        $komen = DB::table('comments')
+            ->where('id_berita', '=', $id)
+            ->latest()
+            ->paginate(10);
+
 
         return view('user.detail-berita', ['data' => $data], ['komen' => $komen]);
     }
+
+    function showByKategori($kategori)
+    {  
+        $data = DB::table('beritas')
+            ->where('kategori', '=', $kategori)
+            ->latest()
+            ->get();
+
+        return view('user.berita', ['data' => $data]);
+    }
+
 }

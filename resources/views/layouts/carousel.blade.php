@@ -1,13 +1,21 @@
 <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-ride="carousel">
     <div class="carousel-inner carousel-inner-custom">
         <div class="carousel-item active" data-bs-interval="5000">
-            <img src="https://cdn.alsgp0.fds.api.mi-img.com/middle.community.micommunityid.bkt/4a8372110a0f48516cdbb71ea5366b1c" class="d-block w-100" alt="...">
+            <img src="{{ asset('carousel/news.png') }}" width="100%" height="600px" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-            <img src="https://cdn.alsgp0.fds.api.mi-img.com/middle.community.micommunityid.bkt/781b3f7cd1e440f3c040564d0664ae87" class="d-block w-100" alt="...">
+            <img src="{{ asset('carousel/windowsfx.png') }}" width="100%" height="600px" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-xxl-block" style="color:black;">
+                <h5>Windows FX</h5>
+                <p>PC Tak Dukung Windows 11, Coba Pakai Linux Ini Tampilannya Mirip</p>
+            </div>
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-            <img src="https://cdn.alsgp0.fds.api.mi-img.com/middle.community.micommunityid.bkt/a064156b1093c1419ac78283d7f316ab" class="d-block w-100" alt="...">
+            <img src="{{ asset('carousel/ars.jpeg') }}" width="100%" height="600px"" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-xxl-block">
+                <h5>ARS University</h5>
+                <p>Universitas Adhirajasa Reswara Sanjaya merupakan sebuah perguruan tinggi swasta yang terdapat di Kota Bandung</p>
+            </div>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
